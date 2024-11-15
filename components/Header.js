@@ -1,8 +1,13 @@
-import { PlusCircleIcon, SearchIcon } from '@heroicons/react/outline';
-import { HomeIcon } from '@heroicons/react/solid';
-import Image from 'next/image';
+import { PlusCircleIcon, SearchIcon } from '@heroicons/react/outline'
+import { HomeIcon } from '@heroicons/react/solid'
+import Image from 'next/image'
+import { useSession, signOut, signIn } from 'next-auth/react'
 
 export default function Header() {
+  const { data: session } = useSession()
+
+  console.log(session)
+
   return (
     <div className='bg-white sticky z-30 border-b top-0 shadow-sm'>
       <div className='flex justify-between items-center max-w-6xl mx-4 xl:mx-auto'>
@@ -37,15 +42,22 @@ export default function Header() {
 
         <div className='flex space-x-4 items-center'>
           <HomeIcon className='header-icons hidden md:inline-flex' />
-          <PlusCircleIcon className='header-icons' />
-          <img
-            src='https://static.skillshare.com/uploads/users/350301760/user-image-large.jpg?753816048'
-            layout='fill'
-            className='cursor-pointer h-10 rounded-full'
-            alt='user-image'
-          />
+          {session ? (
+            <>
+              <PlusCircleIcon className='header-icons' />
+              <img
+                src={session.user.image}
+                layout='fill'
+                className='cursor-pointer h-10 rounded-full'
+                alt='user-image'
+                onClick={signOut}
+              />
+            </>
+          ) : (
+            <button onClick={signIn}>Sign in</button>
+          )}
         </div>
       </div>
     </div>
-  );
+  )
 }

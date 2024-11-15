@@ -9,7 +9,7 @@
   },
   "files.autoSave": "afterDelay",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  
+
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.tabSize": 2,
@@ -49,6 +49,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "prettier.jsxSingleQuote": true,
   "prettier.singleQuote": true,
+  "prettier.semi": false,
   "workbench.editorAssociations": {
     "*.xlsx": "default"
   },
